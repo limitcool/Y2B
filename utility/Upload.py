@@ -80,9 +80,10 @@ def uploadFile(cookie: dict, videoPath: str, enableParallel=False) -> str:
     #     except (IndexError, KeyError):
     #         time.sleep(2)
     #         continue
-    _data = s.post(url=data_url).json()
+    _data = s.post(url=data_url)
+    logger.debug(_data.text)
+    _data = _data.json()
     upload_id = _data["upload_id"]
-    logger.debug(json.dumps(_data))
     logger.info("get upload id done")
     # start upload
     # upload_size = 8 * 1024 * 1024
